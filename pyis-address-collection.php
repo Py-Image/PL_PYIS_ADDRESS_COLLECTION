@@ -110,7 +110,7 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
             
             if ( ! defined( 'PyIS_Address_Collection_ID' ) ) {
                 // Plugin version
-                define( 'PyIS_Address_Collection_ID', $this->plugin_data['Version'] );
+                define( 'PyIS_Address_Collection_ID', $this->plugin_data['TextDomain'] );
             }
 
             if ( ! defined( 'PyIS_Address_Collection_VER' ) ) {
