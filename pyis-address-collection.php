@@ -33,6 +33,12 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
          * @since       1.0.0
          */
         public $admin;
+        
+        /**
+         * @var         PyIS_Address_Collection $rest REST Endpoints
+         * @since       1.0.0
+         */
+        public $rest;
 
         /**
          * Get active instance
@@ -109,7 +115,7 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
             $this->plugin_data = get_plugin_data( __FILE__ );
             
             if ( ! defined( 'PyIS_Address_Collection_ID' ) ) {
-                // Plugin version
+                // Plugin Text Domain
                 define( 'PyIS_Address_Collection_ID', $this->plugin_data['TextDomain'] );
             }
 
@@ -184,6 +190,9 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
             if ( is_admin() ) {
                 
             }
+            
+            require_once PyIS_Address_Collection_DIR . '/core/rest/pyis-address-collection-cognitoforms-rest.php';
+            $this->rest = new PyIS_Address_Collection_REST();
             
         }
         
