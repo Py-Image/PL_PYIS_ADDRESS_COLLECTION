@@ -5,7 +5,7 @@
  * @since 1.0.0
  *
  * @package PyIS_Address_Collection
- * @subpackage PyIS_Address_Collection/core
+ * @subpackage PyIS_Address_Collection/core/rest
  */
 
 defined( 'ABSPATH' ) || die();

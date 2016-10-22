@@ -29,10 +29,10 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
         public $plugin_data;
         
         /**
-         * @var         PyIS_Address_Collection $admin Admin Settings
+         * @var         PyIS_Address_Collection $settings Admin Settings
          * @since       1.0.0
          */
-        public $admin;
+        public $settings;
         
         /**
          * @var         PyIS_Address_Collection $rest REST Endpoints
@@ -188,6 +188,9 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
         private function require_necessities() {
             
             if ( is_admin() ) {
+                
+                require_once PyIS_Address_Collection_DIR . '/core/admin/pyis-address-collection-settings.php';
+                $this->settings = new PyIS_Address_Collection_Settings();
                 
             }
             
