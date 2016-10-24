@@ -25,6 +25,13 @@ class PyIS_Address_Collection_Settings {
 
     }
     
+    /**
+     * Create the Admin Page to hold our Settings
+     * 
+     * @access      public
+     * @since       1.0.0
+     * @return      void
+     */
     public function create_admin_page() {
         
         $submenu_page = add_submenu_page(
@@ -38,6 +45,13 @@ class PyIS_Address_Collection_Settings {
         
     }
     
+    /**
+     * Create the Content/Form for our Admin Page
+     * 
+     * @access      public
+     * @since       1.0.0
+     * @return      void
+     */
     public function admin_page_content() { ?>
 
         <div class="wrap dzs-mailchimp-settings">
@@ -111,6 +125,13 @@ class PyIS_Address_Collection_Settings {
         
     }
     
+    /**
+     * Register our Options so the Admin Page knows what to Save
+     * 
+     * @access      public
+     * @since       1.0.0
+     * @return      void
+     */
     public function register_options() {
         
         if ( false === get_option( 'pyis_drip_api_key' ) ) {
