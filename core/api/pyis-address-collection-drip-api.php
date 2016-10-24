@@ -148,6 +148,7 @@ class PyIS_Address_Collection_Drip_API {
         $url = $this->api_endpoint . '/' . $method;
         
         $args['headers']['Authorization'] = 'Basic ' . base64_encode( $this->api_key . ':' . $this->password );
+        $args['headers']['Content-Type'] = 'application/vnd.api+json';
         
         $response = wp_remote_request( $url, $args );
 

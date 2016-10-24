@@ -74,8 +74,49 @@ class PyIS_Address_Collection_REST {
         
         $email = $json->Email;
         $full_name = $json->Name->FirstAndLast;
-
-        return true;
+        
+        $subscriber = PYISADDRESSCOLLECTION()->drip_api->get( 'subscribers/' . $email );
+        
+        // If the Email is already associated with a subscriber
+        if ( ! property_exists( $subscriber, 'error' ) ) {
+            
+            $tag_subscriber = PYISADDRESSCOLLECTION()->drip_api->post(
+                'tags',
+                array(
+                    'body' => json_encode( array(
+                        'tags' => array(
+                            array(
+                                'email' => $email,
+                                'tag' => 'ppao collected address',
+                            ),
+                        ),
+                    ) ),
+                )
+            );
+            
+        }
+        else {
+            
+            $tag_subscriber = PYISADDRESSCOLLECTION()->drip_api->post(
+                'tags',
+                array(
+                    'body' => json_encode( array(
+                        'tags' => array(
+                            array(
+                                'email' => $email,
+                                'tag' => 'ppao address suspect',
+                            ),
+                        ),
+                    ) ),
+                )
+            );
+            
+        }
+        
+        return json_encode( array(
+            'success' => true,
+            'message' => __( 'Success!', PyIS_Address_Collection_ID ),
+        ) );
 
     }
 
