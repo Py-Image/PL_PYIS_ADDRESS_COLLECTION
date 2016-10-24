@@ -111,6 +111,40 @@ class PyIS_Address_Collection_Settings {
                         
                         </tr>
                         
+                        <tr>
+                            
+                            <th scope="row">
+                                <label for="pyis_drip_account_id">
+                                    <?php echo _x( 'Drip Account ID', 'Drip Account ID Label', PyIS_Address_Collection_ID ); ?>
+                                </label>
+                            </th>
+                            
+                            <td>
+                                <input type="text" class="regular-text" name="pyis_drip_account_id" value="<?php echo ( $account_id = get_option( 'pyis_drip_account_id' ) ) ? $account_id : ''; ?>" /><br />
+                                <p class="description">
+                                    <?php echo _x( 'Your Account ID is found in the Address Bar after logging in. <code>https://www.getdrip.com/&lt;account_id&gt;/</code>', 'Account ID Example Text', PyIS_Address_Collection_ID ); ?>
+                                </p>
+                            </td>
+                        
+                        </tr>
+                        
+                        <tr>
+                            
+                            <th scope="row">
+                                <label for="pyis_drip_account_password">
+                                    <?php echo _x( 'Drip Account Password', 'Drip Account Password Label', PyIS_Address_Collection_ID ); ?>
+                                </label>
+                            </th>
+                            
+                            <td>
+                                <input type="password" class="regular-text" name="pyis_drip_account_password" value="<?php echo ( $account_password = get_option( 'pyis_drip_account_password' ) ) ? $account_password : ''; ?>" /><br />
+                                <p class="description">
+                                    <?php echo _x( 'Your Password is needed to Authenticate the API Request.', 'Account Password Explaination Text', PyIS_Address_Collection_ID ); ?>
+                                </p>
+                            </td>
+                        
+                        </tr>
+                        
                     </tbody>
                     
                 </table>
@@ -138,6 +172,14 @@ class PyIS_Address_Collection_Settings {
             add_option( 'pyis_drip_api_key' );
         }
         
+        if ( false === get_option( 'pyis_drip_account_id' ) ) {
+            add_option( 'pyis_dripaccount_id' );
+        }
+        
+        if ( false === get_option( 'pyis_drip_account_password' ) ) {
+            add_option( 'pyis_drip_account_password' );
+        }
+        
         add_settings_section(
             'pyis_address_collection',
             __return_null(),
@@ -146,6 +188,8 @@ class PyIS_Address_Collection_Settings {
         );
         
         register_setting( 'pyis_address_collection', 'pyis_drip_api_key' );
+        register_setting( 'pyis_address_collection', 'pyis_drip_account_id' );
+        register_setting( 'pyis_address_collection', 'pyis_drip_account_password' );
         
     }
     
