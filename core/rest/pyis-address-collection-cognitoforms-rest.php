@@ -50,16 +50,20 @@ class PyIS_Address_Collection_REST {
 
         $json = file_get_contents( 'php://input' );
 
-        if ( empty( $json ) ) {  
+        if ( empty( $json ) ) {
             return json_encode( array(
                 'success' => false,
-                'message' => _x( 'No data payload', 'No JSON Uploaded', PyIS_Address_Collection_ID ),
+                'message' => _x( 'No data payload', 'No JSON Uploaded Error', PyIS_Address_Collection_ID ),
             ) );
         }
 
         $json = json_decode( $json );
+        
+        $form_id = $json->Form->Id;
+        $email = $json->Email;
+        $full_name = $json->Name->FirstAndLast;
 
-        return $json->username;
+        return $form_id;
 
     }
 
