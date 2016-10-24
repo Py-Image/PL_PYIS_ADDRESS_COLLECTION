@@ -78,7 +78,7 @@ class PyIS_Address_Collection_REST {
         $subscriber = PYISADDRESSCOLLECTION()->drip_api->get( 'subscribers/' . $email );
         
         // If the Email is already associated with a subscriber
-        if ( ! property_exists( $subscriber, 'error' ) ) {
+        if ( ! property_exists( $subscriber, 'errors' ) ) {
             
             $tag_subscriber = PYISADDRESSCOLLECTION()->drip_api->post(
                 'tags',
