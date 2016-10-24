@@ -25,6 +25,12 @@ class PyIS_Address_Collection_Drip_API {
     private $account_id = '';
     
     /**
+    * @var         PyIS_Address_Collection_Drip_API $password The Account ID the API Key belongs to. Yep, we need both.
+    * @since       1.0.0
+    */
+    private $password = '';
+    
+    /**
     * @var         PyIS_Address_Collection_Drip_API $api_endpoint Holds set API Endpoint
     * @since       1.0.0
     */
@@ -35,31 +41,16 @@ class PyIS_Address_Collection_Drip_API {
 	 * 
 	 * @since 1.0.0
 	 */
-    function __construct( $api_key ) {
+    function __construct( $api_key, $account_id, $password ) {
 
-        // Pass API Key into the Constructor.
-        $this->api_key = $api_key;
+        $this->api_key = trim( $api_key );
         
-        // Construct the appropriate API Endpoint
-        $data_center = explode( '-', $this->api_key );
-        $this->data_center = $data_center[ count( $data_center ) - 1 ];
+        // Construct the appropriate API Endpoint        
+        $this->account_id = trim( $account_id );
+        $this->api_endpoint  = str_replace( '<account_id>', $this->account_id, $this->api_endpoint );
         
-        $this->api_endpoint  = str_replace( '<dc>', $this->data_center, $this->api_endpoint );
+        $this->password = $password;
 
-    }
-    
-    public function error_check() {
-        
-        if ( empty( $this->api_key ) ) {
-            return sprintf( _x( 'Enter an API Key %s to get started', 'No API Key Error', PyIS_Address_Collection_ID ), '<a href="/wp-admin/options-general.php?page=dzs-Drip">here</a>' );
-        }
-        
-        if ( strpos( $this->api_key, '-' ) === false ) {
-            return sprintf( _x( 'Invalid Drip API key %s supplied.', 'Invalid API Key Error', PyIS_Address_Collection_ID ), $this->api_key );
-        }
-        
-        return false;
-        
     }
 
     /**
@@ -156,23 +147,12 @@ class PyIS_Address_Collection_Drip_API {
         
         $url = $this->api_endpoint . '/' . $method;
         
-        $args['headers']['Authorization'] = 'apikey ' . $this->api_key;
+        $args['headers']['Authorization'] = 'Basic ' . base64_encode( $this->api_key . ':' . $this->password );
         
         $response = wp_remote_request( $url, $args );
 
         return json_decode( $response['body'] );
         
-    }
-    
-    /**
-     * Return the Data Center ID
-     * 
-     * @access      public
-     * @since       1.0.0
-     * @return      string Drip Data Center ID
-     */
-    public function get_data_center() {
-        return $this->data_center;
     }
     
     /**

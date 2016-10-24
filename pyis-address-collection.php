@@ -39,6 +39,12 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
          * @since       1.0.0
          */
         public $rest;
+        
+        /**
+         * @var         PyIS_Address_Collection $drip_api Drip API Class
+         * @since       1.0.0
+         */
+        public $drip_api;
 
         /**
          * Get active instance
@@ -196,6 +202,18 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
             
             require_once PyIS_Address_Collection_DIR . '/core/rest/pyis-address-collection-cognitoforms-rest.php';
             $this->rest = new PyIS_Address_Collection_REST();
+            
+            $api_key = get_option( 'pyis_drip_api_key' );
+            $api_key = ( $api_key ) ? $api_key : '';
+            
+            $account_id = get_option( 'pyis_drip_account_id' );
+            $account_id = ( $account_id ) ? $account_id : '';
+            
+            $account_password = get_option( 'pyis_drip_account_password' );
+            $account_password = ( $account_password ) ? $account_password : '';
+            
+            require_once PyIS_Address_Collection_DIR . '/core/api/pyis-address-collection-drip-api.php';
+            $this->drip_api = new PyIS_Address_Collection_Drip_API( $api_key, $account_id, $account_password );
             
         }
         
