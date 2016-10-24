@@ -59,7 +59,11 @@ class PyIS_Address_Collection_REST {
 
         $json = json_decode( $json );
         
-        $form_id = $json->Form->Id;
+        $form_name = $json->Form->Name;
+        
+        $entry_id = $json->Entry->Number;
+        $entry_link = $json->Entry->AdminLink;
+        
         $email = $json->Email;
         $full_name = $json->Name->FirstAndLast;
 
