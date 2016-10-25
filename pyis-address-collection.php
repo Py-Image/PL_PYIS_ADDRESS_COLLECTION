@@ -70,28 +70,50 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
             $this->setup_constants();
             $this->load_textdomain();
             
+            global $wp_version;
             global $wp_settings_errors;
             
-            // That's a descriptive class name! /s
-            if ( ! class_exists( 'Semper_Fi_Module' ) ) {
-                
-                $this->admin_notices[] = sprintf( _x( '%s requires %s to be installed!', 'Missing Plugin Dependency Error', PyIS_Address_Collection_ID ), '<strong>' . $this->plugin_data['Name'] . '</strong>', '<a href="//www.learndash.com/" target="_blank"><strong>LearnDash</strong></a>' );
-                
-                if ( ! has_action( 'admin_notices', array( $this, 'admin_notices' ) ) ) {
-                    add_action( 'admin_notices', array( $this, 'admin_notices' ) );
-                }
-                
-				return;
-                
-            }
+            if ( is_admin() ) {
             
-            if ( defined( 'LEARNDASH_VERSION' ) 
-                && ( version_compare( LEARNDASH_VERSION, '2.2.1.2' ) < 0 ) ) {
-                
-                $this->admin_notices[] = sprintf( _x( '%s requires v%s of %s or higher to be installed!', 'Outdated Dependency Error', PyIS_Address_Collection_ID ), '<strong>' . $this->plugin_data['Name'] . '</strong>', '2.2.1.2', '<a href="//www.learndash.com/" target="_blank"><strong>LearnDash</strong></a>' );
-                
-                if ( ! has_action( 'admin_notices', array( $this, 'admin_notices' ) ) ) {
-                    add_action( 'admin_notices', array( $this, 'admin_notices' ) );
+                if ( version_compare( $wp_version, '4.4' ) == -1 ) {
+
+                    $this->admin_notices[] = sprintf(
+                        _x( '%s requires your WordPress installation to be at least v%s or higher!', 'Super Old WordPress Installation Error', PyIS_Address_Collection_ID ),
+                        '<strong>' . $this->plugin_data['Name'] . '</strong>',
+                        '4.4'
+                    );
+
+                    if ( ! has_action( 'admin_notices', array( $this, 'admin_notices' ) ) ) {
+                        add_action( 'admin_notices', array( $this, 'admin_notices' ) );
+                    }
+
+                    return;
+
+                }
+
+                $api_key = get_option( 'pyis_drip_api_key' );
+                $api_key = ( $api_key ) ? $api_key : '';
+
+                $account_id = get_option( 'pyis_drip_account_id' );
+                $account_id = ( $account_id ) ? $account_id : '';
+
+                $account_password = get_option( 'pyis_drip_account_password' );
+                $account_password = ( $account_password ) ? $account_password : '';
+
+                if ( ! $api_key || ! $account_id || ! $account_password ) {
+
+                    $this->admin_notices[] = sprintf( 
+                        _x( 'In order for data to be sent to Drip, you must enter some credentials in the %s%s Settings Page%s!', 'Drip API Credentials Needed', PyIS_Address_Collection_ID ), 
+                        '<a href="' . get_admin_url( null, 'options-general.php?page=pyis-address-collection' ) . '" title="' . sprintf( _x( '%s Settings', 'Settings Page Link from Error Message', PyIS_Address_Collection_ID ), $this->plugin_data['Name'] ) . '">',
+                        '<strong>' . $this->plugin_data['Name'] . '</strong>', '</a>'
+                    );
+
+                    if ( ! has_action( 'admin_notices', array( $this, 'admin_notices' ) ) ) {
+                        add_action( 'admin_notices', array( $this, 'admin_notices' ) );
+                    }
+
+                    // Not breaking execution for this error
+
                 }
                 
             }
@@ -241,6 +263,25 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
                 true
             );
             
+        }
+        
+        /**
+        * Show admin notices.
+        * 
+        * @access    public
+        * @since     1.0.0
+        * @return    HTML
+        */
+        public function admin_notices() {
+            ?>
+            <div class="error">
+                <?php foreach ( $this->admin_notices as $notice ) : ?>
+                    <p>
+                        <?php echo $notice; ?>
+                    </p>
+                <?php endforeach; ?>
+            </div>
+            <?php
         }
 
     }
