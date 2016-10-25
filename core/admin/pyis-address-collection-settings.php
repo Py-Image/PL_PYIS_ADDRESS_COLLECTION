@@ -96,12 +96,12 @@ class PyIS_Address_Collection_Settings {
                             
                             <th scope="row">
                                 <label for="pyis_drip_api_key">
-                                    <?php echo _x( 'Drip API Token', 'Drip API Key Label', PyIS_Address_Collection_ID ); ?>
+                                    <?php echo _x( 'Drip API Token', 'Drip API Key Label', PyIS_Address_Collection_ID ); ?> <span class="required">*</span>
                                 </label>
                             </th>
                             
                             <td>
-                                <input type="text" class="regular-text" name="pyis_drip_api_key" value="<?php echo ( $api_key = get_option( 'pyis_drip_api_key' ) ) ? $api_key : ''; ?>" /><br />
+                                <input required type="text" class="regular-text" name="pyis_drip_api_key" value="<?php echo ( $api_key = get_option( 'pyis_drip_api_key' ) ) ? $api_key : ''; ?>" /><br />
                                 <p class="description">
                                     <a href="//www.getdrip.com/user/edit" target="_blank">
                                         <?php echo _x( 'Find your API Token Here', 'API Key Link Text', PyIS_Address_Collection_ID ); ?>
@@ -115,12 +115,12 @@ class PyIS_Address_Collection_Settings {
                             
                             <th scope="row">
                                 <label for="pyis_drip_account_id">
-                                    <?php echo _x( 'Drip Account ID', 'Drip Account ID Label', PyIS_Address_Collection_ID ); ?>
+                                    <?php echo _x( 'Drip Account ID', 'Drip Account ID Label', PyIS_Address_Collection_ID ); ?> <span class="required">*</span>
                                 </label>
                             </th>
                             
                             <td>
-                                <input type="text" class="regular-text" name="pyis_drip_account_id" value="<?php echo ( $account_id = get_option( 'pyis_drip_account_id' ) ) ? $account_id : ''; ?>" /><br />
+                                <input required type="text" class="regular-text" name="pyis_drip_account_id" value="<?php echo ( $account_id = get_option( 'pyis_drip_account_id' ) ) ? $account_id : ''; ?>" /><br />
                                 <p class="description">
                                     <?php echo _x( 'Your Account ID is found in the Address Bar after logging in. <code>https://www.getdrip.com/&lt;account_id&gt;/</code>', 'Account ID Example Text', PyIS_Address_Collection_ID ); ?>
                                 </p>
@@ -132,12 +132,12 @@ class PyIS_Address_Collection_Settings {
                             
                             <th scope="row">
                                 <label for="pyis_drip_account_password">
-                                    <?php echo _x( 'Drip Account Password', 'Drip Account Password Label', PyIS_Address_Collection_ID ); ?>
+                                    <?php echo _x( 'Drip Account Password', 'Drip Account Password Label', PyIS_Address_Collection_ID ); ?> <span class="required">*</span>
                                 </label>
                             </th>
                             
                             <td>
-                                <input type="password" class="regular-text" name="pyis_drip_account_password" value="<?php echo ( $account_password = get_option( 'pyis_drip_account_password' ) ) ? $account_password : ''; ?>" /><br />
+                                <input required type="password" class="regular-text" name="pyis_drip_account_password" value="<?php echo ( $account_password = get_option( 'pyis_drip_account_password' ) ) ? $account_password : ''; ?>" /><br />
                                 <p class="description">
                                     <?php echo _x( 'Your Password is needed to Authenticate the API Request.', 'Account Password Explaination Text', PyIS_Address_Collection_ID ); ?>
                                 </p>
