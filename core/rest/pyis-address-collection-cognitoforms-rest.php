@@ -87,7 +87,7 @@ class PyIS_Address_Collection_REST {
                         'tags' => array(
                             array(
                                 'email' => $email,
-                                'tag' => 'ppao collected address',
+                                'tag' => apply_filters( 'pyis_address_collection_collected_tag', 'ppao collected address' ),
                             ),
                         ),
                     ) ),
@@ -104,7 +104,7 @@ class PyIS_Address_Collection_REST {
                         'tags' => array(
                             array(
                                 'email' => $email,
-                                'tag' => 'ppao address suspect',
+                                'tag' => apply_filters( 'pyis_address_collection_suspect_tag', 'ppao address suspect' ),
                             ),
                         ),
                     ) ),
