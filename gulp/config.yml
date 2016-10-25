@@ -57,6 +57,7 @@ watch:
 
 release:
   type: 'plugin'
+  languagesDir: './languages/'
   files:
     - "./**/*.*"
     - "!./**/*.map"

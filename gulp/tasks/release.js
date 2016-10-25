@@ -4,12 +4,24 @@ var gulp          = require( 'gulp' );
 var notify        = require( 'gulp-notify' );
 var fs            = require( 'fs' );
 var pkg           = JSON.parse( fs.readFileSync( './package.json' ) );
-var zip           = require( 'gulp-zip' );
-var packageName   = pkg.name.toLowerCase().replace( '_', '-' );
+var packageName   = pkg.name.toLowerCase().replace( /_/g, '-' );
 
 require( 'gulp-grunt' )( gulp, {
     prefix: 'release:grunt-',
 } ); // add all the gruntfile tasks to gulp
+
+gulp.task( 'release:localization', function( done ) {
+
+    return gulp.src( './**/*.php' )
+        .pipe( $.sort() )
+        .pipe( $.wpPot( {
+            domain: pkg.name + '_ID',
+            destFile: packageName + '.pot',
+            package: pkg.name,
+        } ) )
+        .pipe( gulp.dest( config.languagesDir ) );
+
+} );
 
 gulp.task( 'release:copy', function( done ) {
     
@@ -51,5 +63,5 @@ gulp.task( 'release:cleanup', function( done ) {
 } );
 
 gulp.task( 'release', function( done ) {
-    $.sequence( 'release:copy', 'release:grunt-compress', 'release:rename', 'release:cleanup', done );
+    $.sequence( 'release:localization', 'release:copy', 'release:grunt-compress', 'release:rename', 'release:cleanup', done );
 } );

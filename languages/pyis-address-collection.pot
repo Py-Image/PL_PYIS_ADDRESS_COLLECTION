@@ -1,0 +1,110 @@
+# Copyright (C) 2016 PyIS_Address_Collection
+# This file is distributed under the same license as the PyIS_Address_Collection package.
+msgid ""
+msgstr ""
+"Project-Id-Version: PyIS_Address_Collection\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: core/admin/pyis-address-collection-settings.php:39
+msgctxt "Admin Page Title"
+msgid "PyImageSearch Address Collection"
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:40
+msgctxt "Admin Menu Title"
+msgid "Address Collection"
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:58
+msgctxt "Admin Page Title"
+msgid "CognitoForms+Drip Integration Settings"
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:72
+msgctxt "CognitoForms Setup Label"
+msgid "CognitoForms Setup"
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:79
+msgid "Edit your Form."
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:82
+msgid "Select \"Submission Settings\" at the bottom of the screen."
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:85
+msgid "Expand the \"Post JSON Data to Website\" menu on the left of the screen."
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:88
+msgid "Place <code>%s/wp-json/pyis/v1/cognitoforms/practical-python-open-cv-hardcopy/submit</code> into the \"Submit Entry Endpoint\" text input and save your changes."
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:99
+msgctxt "Drip API Key Label"
+msgid "Drip API Token"
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:107
+msgctxt "API Key Link Text"
+msgid "Find your API Token Here"
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:118
+msgctxt "Drip Account ID Label"
+msgid "Drip Account ID"
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:125
+msgctxt "Account ID Example Text"
+msgid "Your Account ID is found in the Address Bar after logging in. <code>https://www.getdrip.com/&lt;account_id&gt;/</code>"
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:135
+msgctxt "Drip Account Password Label"
+msgid "Drip Account Password"
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:142
+msgctxt "Account Password Explaination Text"
+msgid "Your Password is needed to Authenticate the API Request."
+msgstr ""
+
+#: core/rest/pyis-address-collection-cognitoforms-rest.php:55
+msgctxt "Wrong Source Error"
+msgid "Access Denied"
+msgstr ""
+
+#: core/rest/pyis-address-collection-cognitoforms-rest.php:64
+msgctxt "No JSON Uploaded Error"
+msgid "No data payload"
+msgstr ""
+
+#: core/rest/pyis-address-collection-cognitoforms-rest.php:118
+msgid "Success!"
+msgstr ""
+
+#: pyis-address-collection.php:81
+msgctxt "Super Old WordPress Installation Error"
+msgid "%s requires your WordPress installation to be at least v%s or higher!"
+msgstr ""
+
+#: pyis-address-collection.php:106
+msgctxt "Drip API Credentials Needed"
+msgid "In order for data to be sent to Drip, you must enter some credentials in the %s%s Settings Page%s!"
+msgstr ""
+
+#: pyis-address-collection.php:107
+msgctxt "Settings Page Link from Error Message"
+msgid "%s Settings"
+msgstr ""
