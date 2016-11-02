@@ -81,11 +81,16 @@ class PyIS_Address_Collection_REST {
         $purchased_hardcopy_bundle = array_filter( 
             $subscriber->subscribers,
             function( $object ) {
+                /**
+                 * Allows the Tag we check against for Hardcopy Bundle Purchase to be changed
+                 *
+                 * @since 1.0.0
+                 */
                 return in_array( apply_filters( 'pyis_address_collection_tag_check', 'purchased hardcopy bundle' ), $object->tags );
             }
         );
         
-        // If the Email is already associated with a subscriber
+        // If the Email is associated with a User that has purchased the Hard Copy Bundle
         if ( $purchased_hardcopy_bundle ) {
             
             $tag_subscriber = PYISADDRESSCOLLECTION()->drip_api->post(
@@ -95,6 +100,11 @@ class PyIS_Address_Collection_REST {
                         'tags' => array(
                             array(
                                 'email' => $email,
+                                /**
+                                 * Allow the "Address Collected" Tag to be changed
+                                 *
+                                 * @since 1.0.0
+                                 */
                                 'tag' => apply_filters( 'pyis_address_collection_collected_tag', 'ppao collected address' ),
                             ),
                         ),
@@ -112,6 +122,11 @@ class PyIS_Address_Collection_REST {
                         'tags' => array(
                             array(
                                 'email' => $email,
+                                /**
+                                 * Allow the "Address Suspect" Tag to be changed
+                                 *
+                                 * @since 1.0.0
+                                 */
                                 'tag' => apply_filters( 'pyis_address_collection_suspect_tag', 'ppao address suspect' ),
                             ),
                         ),
@@ -123,6 +138,12 @@ class PyIS_Address_Collection_REST {
             $to = ( $to ) ? $to : get_option( 'admin_email' ); // Default to the Primary Admin Email
             
             $subject = _x( 'Address Collection Notice', 'User Suspect Email Subject Line', PyIS_Address_Collection_ID );
+            
+            /**
+             * Allow the Subject Line of the Notificaiton Emails to be changed
+             *
+             * @since 1.0.0
+             */
             $subject = apply_filters( 'pyis_address_collection_subject_line', $subject );
             
             $message = sprintf( 
@@ -135,15 +156,15 @@ class PyIS_Address_Collection_REST {
                 $email
             );
             
+            /**
+             * Allow the Email Message Body to be changed using the same data we've pulled via JSON
+             *
+             * @since 1.0.0
+             */
             $message = apply_filters( 
                 'pyis_address_collection_message_body', 
                 $message, 
-                $form_name, 
-                $entry_link,
-                $entry_id, 
-                $first_name, 
-                $last_name, 
-                $email 
+                $json 
             );
             
             $sitename = strtolower( $_SERVER['SERVER_NAME'] );
@@ -153,9 +174,21 @@ class PyIS_Address_Collection_REST {
             }
             
             $from_address = 'wordpress@' . $sitename;
+            
+            /**
+             * Allow the "From: " Address Header to be changed
+             *
+             * @since 1.0.0
+             */
             $from_address = apply_filters( 'pyis_address_collection_from_address', $from_address, $sitename );
             
-            $reply_to_address = 'wordpress@'. $sitename;
+            $reply_to_address = 'wordpress@' . $sitename;
+            
+            /**
+             * Allow the "Reply-To: " Address Header to be changed
+             *
+             * @since 1.0.0
+             */
             $reply_to_address = apply_filters( 'pyis_address_collection_reply_to_address', $reply_to_address, $sitename );
             
             $headers = 'From: ' . $from_address . "\r\n" .

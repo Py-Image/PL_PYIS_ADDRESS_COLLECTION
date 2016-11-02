@@ -177,9 +177,14 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
          * @return      void
          */
         private function load_textdomain() {
-
-            // Set filter for language directory
+            
             $lang_dir = PyIS_Address_Collection_DIR . '/languages/';
+            
+            /**
+             * Allows the ability to override the translation directory within the plugin to check.
+             *
+             * @since 1.0.0
+             */
             $lang_dir = apply_filters( 'pyis_address_collection_languages_directory', $lang_dir );
 
             // Traditional WordPress plugin locale filter
