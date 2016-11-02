@@ -2,7 +2,7 @@
 /**
  * Creates REST Endpoints
  *
- * @since 1.0.0
+ * @since 0.1.0
  *
  * @package PyIS_Address_Collection
  * @subpackage PyIS_Address_Collection/core/rest
@@ -16,7 +16,7 @@ class PyIS_Address_Collection_REST {
     /**
 	 * PyIS_Address_Collection_REST constructor.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 */
     function __construct() {
 
@@ -27,7 +27,7 @@ class PyIS_Address_Collection_REST {
     /**
      * Creates a WP REST API route for CognitoForms to POST JSON tool_box
      * 
-     * @since       1.0.0
+     * @since       0.1.0
      * @access      public
      * @return      void
      */
@@ -83,7 +83,7 @@ class PyIS_Address_Collection_REST {
                 /**
                  * Allows the Tag we check against for Hardcopy Bundle Purchase to be changed
                  *
-                 * @since 1.0.0
+                 * @since 0.1.0
                  */
                 return in_array( apply_filters( 'pyis_address_collection_tag_check', 'purchased hardcopy bundle' ), $object->tags );
             }
@@ -102,7 +102,7 @@ class PyIS_Address_Collection_REST {
                                 /**
                                  * Allow the "Address Collected" Tag to be changed
                                  *
-                                 * @since 1.0.0
+                                 * @since 0.1.0
                                  */
                                 'tag' => apply_filters( 'pyis_address_collection_collected_tag', 'ppao collected address' ),
                             ),
@@ -124,7 +124,7 @@ class PyIS_Address_Collection_REST {
                                 /**
                                  * Allow the "Address Suspect" Tag to be changed
                                  *
-                                 * @since 1.0.0
+                                 * @since 0.1.0
                                  */
                                 'tag' => apply_filters( 'pyis_address_collection_suspect_tag', 'ppao address suspect' ),
                             ),
@@ -141,7 +141,7 @@ class PyIS_Address_Collection_REST {
             /**
              * Allow the Subject Line of the Notificaiton Emails to be changed
              *
-             * @since 1.0.0
+             * @since 0.1.0
              */
             $subject = apply_filters( 'pyis_address_collection_subject_line', $subject );
             
@@ -158,7 +158,7 @@ class PyIS_Address_Collection_REST {
             /**
              * Allow the Email Message Body to be changed using the same data we've pulled via JSON
              *
-             * @since 1.0.0
+             * @since 0.1.0
              */
             $message = apply_filters( 
                 'pyis_address_collection_message_body', 
@@ -177,7 +177,7 @@ class PyIS_Address_Collection_REST {
             /**
              * Allow the "From: " Address Header to be changed
              *
-             * @since 1.0.0
+             * @since 0.1.0
              */
             $from_address = apply_filters( 'pyis_address_collection_from_address', $from_address, $sitename );
             
@@ -186,7 +186,7 @@ class PyIS_Address_Collection_REST {
             /**
              * Allow the "Reply-To: " Address Header to be changed
              *
-             * @since 1.0.0
+             * @since 0.1.0
              */
             $reply_to_address = apply_filters( 'pyis_address_collection_reply_to_address', $reply_to_address, $sitename );
             

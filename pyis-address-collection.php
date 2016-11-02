@@ -3,7 +3,7 @@
 Plugin Name: PyImageSearch Address Collection
 Plugin URL: 
 Description: Send data from CognitoForms to Drip using WP as a middleman
-Version: 1.0.0
+Version: 0.1.0
 Text Domain: pyis-address-collection
 Author: Eric Defore
 Author URI: http://realbigmarketing.com
@@ -18,31 +18,31 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
     /**
      * Main PyIS_Address_Collection class
      *
-     * @since       1.0.0
+     * @since       0.1.0
      */
     class PyIS_Address_Collection {
         
         /**
          * @var         PyIS_Address_Collection $plugin_data Holds Plugin Header Info
-         * @since       1.0.0
+         * @since       0.1.0
          */
         public $plugin_data;
         
         /**
          * @var         PyIS_Address_Collection $settings Admin Settings
-         * @since       1.0.0
+         * @since       0.1.0
          */
         public $settings;
         
         /**
          * @var         PyIS_Address_Collection $rest REST Endpoints
-         * @since       1.0.0
+         * @since       0.1.0
          */
         public $rest;
         
         /**
          * @var         PyIS_Address_Collection $drip_api Drip API Class
-         * @since       1.0.0
+         * @since       0.1.0
          */
         public $drip_api;
 
@@ -50,7 +50,7 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
          * Get active instance
          *
          * @access      public
-         * @since       1.0.0
+         * @since       0.1.0
          * @return      object self::$instance The one true PyIS_Address_Collection
          */
         public static function instance() {
@@ -129,7 +129,7 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
          * Setup plugin constants
          *
          * @access      private
-         * @since       1.0.0
+         * @since       0.1.0
          * @return      void
          */
         private function setup_constants() {
@@ -173,7 +173,7 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
          * Internationalization
          *
          * @access      private 
-         * @since       1.0.0
+         * @since       0.1.0
          * @return      void
          */
         private function load_textdomain() {
@@ -183,7 +183,7 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
             /**
              * Allows the ability to override the translation directory within the plugin to check.
              *
-             * @since 1.0.0
+             * @since 0.1.0
              */
             $lang_dir = apply_filters( 'pyis_address_collection_languages_directory', $lang_dir );
 
@@ -215,7 +215,7 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
          * Include different aspects of the Plugin
          * 
          * @access      private
-         * @since       1.0.0
+         * @since       0.1.0
          * @return      void
          */
         private function require_necessities() {
@@ -248,7 +248,7 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
          * Register our CSS/JS to use later
          * 
          * @access      public
-         * @since       1.0.0
+         * @since       0.1.0
          * @return      void
          */
         public function register_scripts() {
@@ -274,7 +274,7 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
         * Show admin notices.
         * 
         * @access    public
-        * @since     1.0.0
+        * @since     0.1.0
         * @return    HTML
         */
         public function admin_notices() {
@@ -297,7 +297,7 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
  * The main function responsible for returning the one true PyIS_Address_Collection
  * instance to functions everywhere
  *
- * @since       1.0.0
+ * @since       0.1.0
  * @return      \PyIS_Address_Collection The one true PyIS_Address_Collection
  */
 add_action( 'plugins_loaded', 'PyIS_Address_Collection_load' );

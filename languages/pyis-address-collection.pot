@@ -30,11 +30,11 @@ msgid "CognitoForms+Drip Integration Settings"
 msgstr ""
 
 #: core/admin/pyis-address-collection-settings.php:72
-msgctxt "CognitoForms Setup Label"
-msgid "CognitoForms Setup"
+msgctxt "CognitoForms API Setup Label"
+msgid "CognitoForms API Setup"
 msgstr ""
 
-#: core/admin/pyis-address-collection-settings.php:79
+#: core/admin/pyis-address-collection-settings.php:79, core/admin/pyis-address-collection-settings.php:110
 msgid "Edit your Form."
 msgstr ""
 
@@ -51,46 +51,100 @@ msgid "Place <code>%s/wp-json/pyis/v1/cognitoforms/practical-python-open-cv-hard
 msgstr ""
 
 #: core/admin/pyis-address-collection-settings.php:99
+msgctxt "Cognito Forms Secret Key Label"
+msgid "CognitoForms Secret Key"
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:106
+msgctxt "Cognito Forms Secret Key Description"
+msgid "This is used to help ensure people aren't abusing your API Endpoint."
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:113
+msgid "Click a \"+\" button at the bottom of your Form to add a Field."
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:116
+msgid "Choose a Basic Form Input, such as Text or Number."
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:119
+msgid "Set \"Label\" to <code>Secret</code>."
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:122
+msgid "Set \"Default Vaue\" to the same value entered above."
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:125
+msgid "Set \"Show This Field\" to <em>Never</em> and \"Require This Field\" to <em>Always</em>."
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:128
+msgid "This value is only sent in the JSON Data, so it cannot be found by Inspecting the Page Source or by Viewing the Entry."
+msgstr ""
+
+#: core/admin/pyis-address-collection-settings.php:139
 msgctxt "Drip API Key Label"
 msgid "Drip API Token"
 msgstr ""
 
-#: core/admin/pyis-address-collection-settings.php:107
+#: core/admin/pyis-address-collection-settings.php:147
 msgctxt "API Key Link Text"
 msgid "Find your API Token Here"
 msgstr ""
 
-#: core/admin/pyis-address-collection-settings.php:118
+#: core/admin/pyis-address-collection-settings.php:158
 msgctxt "Drip Account ID Label"
 msgid "Drip Account ID"
 msgstr ""
 
-#: core/admin/pyis-address-collection-settings.php:125
+#: core/admin/pyis-address-collection-settings.php:165
 msgctxt "Account ID Example Text"
 msgid "Your Account ID is found in the Address Bar after logging in. <code>https://www.getdrip.com/&lt;account_id&gt;/</code>"
 msgstr ""
 
-#: core/admin/pyis-address-collection-settings.php:135
+#: core/admin/pyis-address-collection-settings.php:175
 msgctxt "Drip Account Password Label"
 msgid "Drip Account Password"
 msgstr ""
 
-#: core/admin/pyis-address-collection-settings.php:142
+#: core/admin/pyis-address-collection-settings.php:182
 msgctxt "Account Password Explaination Text"
 msgid "Your Password is needed to Authenticate the API Request."
 msgstr ""
 
-#: core/rest/pyis-address-collection-cognitoforms-rest.php:55
-msgctxt "Wrong Source Error"
-msgid "Access Denied"
+#: core/admin/pyis-address-collection-settings.php:192
+msgctxt "Admin Email Label"
+msgid "Send Notification Emails To:"
 msgstr ""
 
-#: core/rest/pyis-address-collection-cognitoforms-rest.php:64
+#: core/admin/pyis-address-collection-settings.php:199
+msgctxt "Admin Email Explaination Text"
+msgid "This will default to the Admin Email: %s."
+msgstr ""
+
+#: core/rest/pyis-address-collection-cognitoforms-rest.php:56
 msgctxt "No JSON Uploaded Error"
 msgid "No data payload"
 msgstr ""
 
-#: core/rest/pyis-address-collection-cognitoforms-rest.php:118
+#: core/rest/pyis-address-collection-cognitoforms-rest.php:65
+msgctxt "Wrong Source Error"
+msgid "Access Denied"
+msgstr ""
+
+#: core/rest/pyis-address-collection-cognitoforms-rest.php:139
+msgctxt "User Suspect Email Subject Line"
+msgid "Address Collection Notice"
+msgstr ""
+
+#: core/rest/pyis-address-collection-cognitoforms-rest.php:149
+msgctxt "User Suspect Email Message Body"
+msgid "%s has recieved a suspicious entry.<br /><br />Entry ID: <a href='%s' target='_blank'>%s</a><br /><br />First Name: %s<br /><br />Last Name: %s<br /><br />Email Address: %s"
+msgstr ""
+
+#: core/rest/pyis-address-collection-cognitoforms-rest.php:205
 msgid "Success!"
 msgstr ""
 

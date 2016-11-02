@@ -2,7 +2,7 @@
 /**
  * PyImageSearch Address Collection Settings
  *
- * @since 1.0.0
+ * @since 0.1.0
  *
  * @package PyIS_Address_Collection
  * @subpackage PyIS_Address_Collection/core/admin
@@ -15,7 +15,7 @@ class PyIS_Address_Collection_Settings {
     /**
 	 * PyIS_Address_Collection_Settings constructor.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 */
     function __construct() {
 
@@ -29,7 +29,7 @@ class PyIS_Address_Collection_Settings {
      * Create the Admin Page to hold our Settings
      * 
      * @access      public
-     * @since       1.0.0
+     * @since       0.1.0
      * @return      void
      */
     public function create_admin_page() {
@@ -49,7 +49,7 @@ class PyIS_Address_Collection_Settings {
      * Create the Content/Form for our Admin Page
      * 
      * @access      public
-     * @since       1.0.0
+     * @since       0.1.0
      * @return      void
      */
     public function admin_page_content() { ?>
@@ -220,7 +220,7 @@ class PyIS_Address_Collection_Settings {
      * Register our Options so the Admin Page knows what to Save
      * 
      * @access      public
-     * @since       1.0.0
+     * @since       0.1.0
      * @return      void
      */
     public function register_options() {

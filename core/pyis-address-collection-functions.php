@@ -2,7 +2,7 @@
 /**
  * Provides helper functions.
  *
- * @since      1.0.0
+ * @since      0.1.0
  *
  * @package    PyIS_Address_Collection
  * @subpackage PyIS_Address_Collection/core
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Returns the main plugin object
  *
- * @since 1.0.0
+ * @since 0.1.0
  *
  * @return PyIS_Address_Collection
  */
