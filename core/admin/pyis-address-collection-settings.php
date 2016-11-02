@@ -145,6 +145,23 @@ class PyIS_Address_Collection_Settings {
                         
                         </tr>
                         
+                        <tr>
+                            
+                            <th scope="row">
+                                <label for="pyis_address_collection_admin_email">
+                                    <?php echo _x( 'Send Notification Emails To:', 'Admin Email Label', PyIS_Address_Collection_ID ); ?>
+                                </label>
+                            </th>
+                            
+                            <td>
+                                <input type="text" class="regular-text" name="pyis_address_collection_admin_email" value="<?php echo ( $admin_email = get_option( 'pyis_address_collection_admin_email' ) ) ? $admin_email : ''; ?>" placeholder="<?php echo ( $default_admin_email = get_option( 'admin_email' ) ) ? $default_admin_email : ''; ?>" /><br />
+                                <p class="description">
+                                    <?php printf( _x( 'This will default to the Admin Email: %s.', 'Admin Email Explaination Text', PyIS_Address_Collection_ID ), $default_admin_email ); ?>
+                                </p>
+                            </td>
+                        
+                        </tr>
+                        
                     </tbody>
                     
                 </table>
@@ -180,6 +197,10 @@ class PyIS_Address_Collection_Settings {
             add_option( 'pyis_drip_account_password' );
         }
         
+        if ( false === get_option( 'pyis_address_collection_admin_email' ) ) {
+            add_option( 'pyis_address_collection_admin_email' );
+        }
+        
         add_settings_section(
             'pyis_address_collection',
             __return_null(),
@@ -190,6 +211,7 @@ class PyIS_Address_Collection_Settings {
         register_setting( 'pyis_address_collection', 'pyis_drip_api_key' );
         register_setting( 'pyis_address_collection', 'pyis_drip_account_id' );
         register_setting( 'pyis_address_collection', 'pyis_drip_account_password' );
+        register_setting( 'pyis_address_collection', 'pyis_address_collection_admin_email' );
         
     }
     

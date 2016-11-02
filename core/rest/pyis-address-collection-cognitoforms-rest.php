@@ -73,7 +73,8 @@ class PyIS_Address_Collection_REST {
         $entry_link = $json->Entry->AdminLink;
         
         $email = $json->Email;
-        $full_name = $json->Name->FirstAndLast;
+        $first_name = $json->Name->First;
+        $last_name = $json->Name->Last;
         
         $subscriber = PYISADDRESSCOLLECTION()->drip_api->get( 'subscribers/' . $email );
         
@@ -117,6 +118,52 @@ class PyIS_Address_Collection_REST {
                     ) ),
                 )
             );
+            
+            $to = get_option( 'pyis_address_collection_admin_email' );
+            $to = ( $to ) ? $to : get_option( 'admin_email' ); // Default to the Primary Admin Email
+            
+            $subject = _x( 'Address Collection Notice', 'User Suspect Email Subject Line', PyIS_Address_Collection_ID );
+            $subject = apply_filters( 'pyis_address_collection_subject_line', $subject );
+            
+            $message = sprintf( 
+                _x( "%s has recieved a suspicious entry.<br /><br />Entry ID: <a href='%s' target='_blank'>%s</a><br /><br />First Name: %s<br /><br />Last Name: %s<br /><br />Email Address: %s", 'User Suspect Email Message Body', PyIS_Address_Collection_ID ),
+                $form_name,
+                $entry_link,
+                $entry_id,
+                $first_name,
+                $last_name,
+                $email
+            );
+            
+            $message = apply_filters( 
+                'pyis_address_collection_message_body', 
+                $message, 
+                $form_name, 
+                $entry_link,
+                $entry_id, 
+                $first_name, 
+                $last_name, 
+                $email 
+            );
+            
+            $sitename = strtolower( $_SERVER['SERVER_NAME'] );
+
+            if ( substr( $sitename, 0, 4 ) == 'www.' ) {
+                $sitename = substr( $sitename, 4 );
+            }
+            
+            $from_address = 'wordpress@' . $sitename;
+            $from_address = apply_filters( 'pyis_address_collection_from_address', $from_address, $sitename );
+            
+            $reply_to_address = 'wordpress@'. $sitename;
+            $reply_to_address = apply_filters( 'pyis_address_collection_reply_to_address', $reply_to_address, $sitename );
+            
+            $headers = 'From: ' . $from_address . "\r\n" .
+                'Reply-To: ' . $reply_to_address . "\r\n" .
+                "Content-type: text/html; charset=iso-8859-1\r\n" . 
+                'X-Mailer: PHP/' . phpversion();
+            
+            mail( $to, $subject, $message, $headers );
             
         }
         
