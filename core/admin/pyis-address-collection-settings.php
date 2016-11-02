@@ -69,7 +69,7 @@ class PyIS_Address_Collection_Settings {
                             
                             <th scope="row">
                                 <label for="cognitoforms_instructions">
-                                    <?php echo _x( 'CognitoForms Setup', 'CognitoForms Setup Label', PyIS_Address_Collection_ID ); ?>
+                                    <?php echo _x( 'CognitoForms API Setup', 'CognitoForms API Setup Label', PyIS_Address_Collection_ID ); ?>
                                 </label>
                             </th>
                             
@@ -86,6 +86,46 @@ class PyIS_Address_Collection_Settings {
                                     </li>
                                     <li>
                                         <?php printf( __( 'Place <code>%s/wp-json/pyis/v1/cognitoforms/practical-python-open-cv-hardcopy/submit</code> into the "Submit Entry Endpoint" text input and save your changes.', PyIS_Address_Collection_ID ), get_site_url() ); ?>
+                                    </li>
+                                </ol>
+                            </td>
+                        
+                        </tr>
+                        
+                        <tr>
+                            
+                            <th scope="row">
+                                <label for="pyis_cognitoforms_secret_key">
+                                    <?php echo _x( 'CognitoForms Secret Key', 'Cognito Forms Secret Key Label', PyIS_Address_Collection_ID ); ?> <span class="required">*</span>
+                                </label>
+                            </th>
+                            
+                            <td>
+                                <input required type="text" class="regular-text" name="pyis_cognitoforms_secret_key" value="<?php echo ( $secret_key = get_option( 'pyis_cognitoforms_secret_key' ) ) ? $secret_key : ''; ?>" /><br />
+                                <p class="description">
+                                    <?php echo _x( "This is used to help ensure people aren't abusing your API Endpoint.", 'Cognito Forms Secret Key Description', PyIS_Address_Collection_ID ); ?>
+                                </p>
+                                <ol>
+                                    <li>
+                                        <?php echo __( 'Edit your Form.', PyIS_Address_Collection_ID ); ?>
+                                    </li>
+                                    <li>
+                                        <?php echo __( 'Click a "+" button at the bottom of your Form to add a Field.', PyIS_Address_Collection_ID ); ?>
+                                    </li>
+                                    <li>
+                                        <?php echo __( 'Choose a Basic Form Input, such as Text or Number.', PyIS_Address_Collection_ID ); ?>
+                                    </li>
+                                    <li>
+                                        <?php echo __( 'Set "Label" to <code>Secret</code>.', PyIS_Address_Collection_ID ); ?>
+                                    </li>
+                                    <li>
+                                        <?php printf( __( 'Set "Default Vaue" to the same value entered above.', PyIS_Address_Collection_ID ), get_site_url() ); ?>
+                                    </li>
+                                    <li>
+                                        <?php printf( __( 'Set "Show This Field" to <em>Never</em> and "Require This Field" to <em>Always</em>.', PyIS_Address_Collection_ID ), get_site_url() ); ?>
+                                    </li>
+                                    <li>
+                                        <?php printf( __( 'This value is only sent in the JSON Data, so it cannot be found by Inspecting the Page Source or by Viewing the Entry.', PyIS_Address_Collection_ID ), get_site_url() ); ?>
                                     </li>
                                 </ol>
                             </td>
@@ -185,6 +225,10 @@ class PyIS_Address_Collection_Settings {
      */
     public function register_options() {
         
+        if ( false === get_option( 'pyis_cognitoforms_secret_key' ) ) {
+            add_option( 'pyis_cognitoforms_secret_key' );
+        }
+        
         if ( false === get_option( 'pyis_drip_api_key' ) ) {
             add_option( 'pyis_drip_api_key' );
         }
@@ -208,6 +252,7 @@ class PyIS_Address_Collection_Settings {
             'pyis-address-collection'
         );
         
+        register_setting( 'pyis_address_collection', 'pyis_cognitoforms_secret_key' );
         register_setting( 'pyis_address_collection', 'pyis_drip_api_key' );
         register_setting( 'pyis_address_collection', 'pyis_drip_account_id' );
         register_setting( 'pyis_address_collection', 'pyis_drip_account_password' );
