@@ -77,8 +77,15 @@ class PyIS_Address_Collection_REST {
         
         $subscriber = PYISADDRESSCOLLECTION()->drip_api->get( 'subscribers/' . $email );
         
+        $purchased_hardcopy_bundle = array_filter( 
+            $subscriber->subscribers,
+            function( $object ) {
+                return in_array( apply_filters( 'pyis_address_collection_tag_check', 'purchased hardcopy bundle' ), $object->tags );
+            }
+        );
+        
         // If the Email is already associated with a subscriber
-        if ( ! property_exists( $subscriber, 'errors' ) ) {
+        if ( $purchased_hardcopy_bundle ) {
             
             $tag_subscriber = PYISADDRESSCOLLECTION()->drip_api->post(
                 'tags',
