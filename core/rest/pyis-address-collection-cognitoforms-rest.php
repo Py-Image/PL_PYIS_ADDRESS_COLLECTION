@@ -114,24 +114,29 @@ class PyIS_Address_Collection_REST {
         }
         else {
             
-            $tag_subscriber = PYISADDRESSCOLLECTION()->drip_api->post(
-                'tags',
-                array(
-                    'body' => json_encode( array(
-                        'tags' => array(
-                            array(
-                                'email' => $email,
-                                /**
-                                 * Allow the "Address Suspect" Tag to be changed
-                                 *
-                                 * @since 0.1.0
-                                 */
-                                'tag' => apply_filters( 'pyis_address_collection_suspect_tag', 'ppao address suspect' ),
+            // Only Tag the Subscriber if they exist
+            if ( ! property_exists( $subscriber, 'errors' ) ) {
+            
+                $tag_subscriber = PYISADDRESSCOLLECTION()->drip_api->post(
+                    'tags',
+                    array(
+                        'body' => json_encode( array(
+                            'tags' => array(
+                                array(
+                                    'email' => $email,
+                                    /**
+                                     * Allow the "Address Suspect" Tag to be changed
+                                     *
+                                     * @since 0.1.0
+                                     */
+                                    'tag' => apply_filters( 'pyis_address_collection_suspect_tag', 'ppao address suspect' ),
+                                ),
                             ),
-                        ),
-                    ) ),
-                )
-            );
+                        ) ),
+                    )
+                );
+                
+            }
             
             $to = get_option( 'pyis_address_collection_admin_email' );
             $to = ( $to ) ? $to : get_option( 'admin_email' ); // Default to the Primary Admin Email
