@@ -134,17 +134,17 @@ msgctxt "Wrong Source Error"
 msgid "Access Denied"
 msgstr ""
 
-#: core/rest/pyis-address-collection-cognitoforms-rest.php:139
+#: core/rest/pyis-address-collection-cognitoforms-rest.php:144
 msgctxt "User Suspect Email Subject Line"
 msgid "Address Collection Notice"
 msgstr ""
 
-#: core/rest/pyis-address-collection-cognitoforms-rest.php:149
+#: core/rest/pyis-address-collection-cognitoforms-rest.php:154
 msgctxt "User Suspect Email Message Body"
 msgid "%s has recieved a suspicious entry.<br /><br />Entry ID: <a href='%s' target='_blank'>%s</a><br /><br />First Name: %s<br /><br />Last Name: %s<br /><br />Email Address: %s"
 msgstr ""
 
-#: core/rest/pyis-address-collection-cognitoforms-rest.php:205
+#: core/rest/pyis-address-collection-cognitoforms-rest.php:210
 msgid "Success!"
 msgstr ""
 

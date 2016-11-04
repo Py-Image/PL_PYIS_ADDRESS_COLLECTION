@@ -3,7 +3,7 @@
 Plugin Name: PyImageSearch Address Collection
 Plugin URL: 
 Description: Send data from CognitoForms to Drip using WP as a middleman
-Version: 0.1.0
+Version: 0.1.1
 Text Domain: pyis-address-collection
 Author: Eric Defore
 Author URI: http://realbigmarketing.com
