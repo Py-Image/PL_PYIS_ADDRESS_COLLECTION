@@ -144,7 +144,7 @@ msgctxt "User Suspect Email Message Body"
 msgid "%s has recieved a suspicious entry.<br /><br />Entry ID: <a href='%s' target='_blank'>%s</a><br /><br />First Name: %s<br /><br />Last Name: %s<br /><br />Email Address: %s"
 msgstr ""
 
-#: core/rest/pyis-address-collection-cognitoforms-rest.php:210
+#: core/rest/pyis-address-collection-cognitoforms-rest.php:209
 msgid "Success!"
 msgstr ""
 
