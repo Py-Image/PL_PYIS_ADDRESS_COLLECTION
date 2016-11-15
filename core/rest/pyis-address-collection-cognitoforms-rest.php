@@ -200,8 +200,7 @@ class PyIS_Address_Collection_REST {
                 "Content-type: text/html; charset=iso-8859-1\r\n" . 
                 'X-Mailer: PHP/' . phpversion();
             
-            /* TODO: Convert to wp_mail() on release */
-            mail( $to, $subject, $message, $headers );
+            wp_mail( $to, $subject, $message, $headers );
             
         }
         
