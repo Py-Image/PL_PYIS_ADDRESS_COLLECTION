@@ -1,14 +1,14 @@
 <?php
 /*
-Plugin Name: PyImageSearch Address Collection
-Plugin URL: 
-Description: Send data from CognitoForms to Drip using WP as a middleman
-Version: 1.0.0
-Text Domain: pyis-address-collection
-Author: Eric Defore
-Author URI: http://realbigmarketing.com
-Contributors: d4mation
-*/
+ * Plugin Name: PyImageSearch Address Collection
+ * Plugin URL: https://github.com/Py-Image/PL_PYIS_ADDRESS_COLLECTION
+ * Description: Send data from CognitoForms to Drip using WP as a middleman
+ * Version: 1.0.1
+ * Text Domain: pyis-address-collection
+ * Author: Eric Defore
+ * Author URI: http://realbigmarketing.com
+ * Contributors: d4mation
+ */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
