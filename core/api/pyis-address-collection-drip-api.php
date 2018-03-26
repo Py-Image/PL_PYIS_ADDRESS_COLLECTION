@@ -144,15 +144,49 @@ class PyIS_Address_Collection_Drip_API {
             'timeout' => $timeout,
             'headers' => array(),
         ) );
+		
+		$args['headers']['Authorization'] 'Basic ' . base64_encode( $this->api_key . ':' . $this->password );
+		$args['Content-Type'] 'application/vnd.api+json',
+		$args['Accept'] = 'application/json, text/javascript, */*; q=0.01',
         
         $url = $this->api_endpoint . '/' . $method;
-        
-        $args['headers']['Authorization'] = 'Basic ' . base64_encode( $this->api_key . ':' . $this->password );
-        $args['headers']['Content-Type'] = 'application/vnd.api+json';
-        
-        $response = wp_remote_request( $url, $args );
-
-        return json_decode( $response['body'] );
+		
+		$ch = curl_init();
+		
+		curl_setopt( $ch, CURLOPT_FRESH_CONNECT, true );
+        curl_setopt( $ch, CURLOPT_FORBID_REUSE, true );
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+        curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true );
+        curl_setopt( $ch, CURLOPT_TIMEOUT, $timeout );
+        curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, $timeout );
+		
+		if ( $http_verb !== 'get' ) {
+			curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, strtoupper( $http_verb ) );
+		}
+		
+		if ( ! empty( $args ) ) {
+			if ( ( isset( $args['__req'] ) && strtolower( $args['__req'] ) == 'get' ) || 
+				$http_verb == 'get' ) {
+				
+                unset( $args['__req'] );
+                $url .= '?' . http_build_query( $args );
+				
+            }
+			elseif ( $http_verb == 'post' || 
+					$http_verb == 'delete' ) {
+				
+                $params_str = is_array( $args ) ? json_encode( $args ) : $args;
+                curl_setopt( $ch, CURLOPT_POSTFIELDS, $params_str );
+				
+            }
+			
+        }
+		
+		curl_setopt( $ch, CURLOPT_URL, $url);
+        curl_setopt( $ch, CURLOPT_HTTPHEADER, $this->headers );
+		
+		$buffer = curl_exec( $ch );
+		return json_decode( $buffer );
         
     }
     
