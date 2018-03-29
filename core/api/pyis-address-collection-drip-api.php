@@ -145,8 +145,8 @@ class PyIS_Address_Collection_Drip_API {
             'headers' => array(),
         ) );
 		
-		$args['headers']['Authorization'] 'Basic ' . base64_encode( $this->api_key . ':' . $this->password );
-		$args['Content-Type'] 'application/vnd.api+json',
+		$args['headers']['Authorization'] = 'Basic ' . base64_encode( $this->api_key . ':' . $this->password );
+		$args['Content-Type'] = 'application/vnd.api+json',
 		$args['Accept'] = 'application/json, text/javascript, */*; q=0.01',
         
         $url = $this->api_endpoint . '/' . $method;
