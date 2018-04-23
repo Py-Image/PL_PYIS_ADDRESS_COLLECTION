@@ -76,6 +76,73 @@ class PyIS_Address_Collection_REST {
         $last_name = $json->Name->Last;
         
         $subscriber = PYISADDRESSCOLLECTION()->drip_api->get( 'subscribers/' . $email );
+		
+		if ( property_exists( $subscriber, 'errors' ) ) {
+			
+			$to = get_option( 'pyis_address_collection_admin_email' );
+            $to = ( $to ) ? $to : get_option( 'admin_email' ); // Default to the Primary Admin Email
+            
+            $subject = _x( 'Address Collection Error', 'Error Email Subject Line', PyIS_Address_Collection_ID );
+            
+            /**
+             * Allow the Subject Line of the Notificaiton Emails to be changed
+             *
+             * @since {{VERSION}}
+             */
+            $subject = apply_filters( 'pyis_address_collection_error_subject_line', $subject );
+            
+			$message = '';
+            foreach ( $subscriber->errors as $error ) {
+				
+				$message .= "$error->code: $error->message\n";
+				
+			}
+            
+            /**
+             * Allow the Email Error Message Body to be changed
+             *
+             * @since {{VERSION}}
+             */
+            $message = apply_filters( 
+                'pyis_address_collection_error_message_body', 
+                $message, 
+                $json 
+            );
+            
+            $sitename = strtolower( $_SERVER['SERVER_NAME'] );
+
+            if ( substr( $sitename, 0, 4 ) == 'www.' ) {
+                $sitename = substr( $sitename, 4 );
+            }
+            
+            $from_address = 'wordpress@' . $sitename;
+            
+            /**
+             * Allow the "From: " Address Header to be changed
+             *
+             * @since {{VERSION}}
+             */
+            $from_address = apply_filters( 'pyis_address_collection_from_address', $from_address, $sitename );
+            
+            $reply_to_address = 'wordpress@' . $sitename;
+            
+            /**
+             * Allow the "Reply-To: " Address Header to be changed
+             *
+             * @since {{VERSION}}
+             */
+            $reply_to_address = apply_filters( 'pyis_address_collection_error_reply_to_address', $reply_to_address, $sitename );
+            
+            $headers = 'From: ' . $from_address . "\r\n" .
+                'Reply-To: ' . $reply_to_address . "\r\n" .
+                "Content-type: text/html; charset=iso-8859-1\r\n" . 
+                'X-Mailer: PHP/' . phpversion();
+            
+            wp_mail( $to, $subject, $message, $headers );
+			
+			return false;
+			
+		}
         
         $purchased_hardcopy_bundle = array_filter( 
             $subscriber->subscribers,
