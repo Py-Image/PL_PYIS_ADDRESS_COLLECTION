@@ -142,12 +142,19 @@ class PyIS_Address_Collection_Drip_API {
         $args = wp_parse_args( $args, array(
             'method' => $http_verb,
             'timeout' => $timeout,
-            'headers' => array(),
+            'headers' => array(
+				'Authorization' => 'Basic ' . base64_encode( $this->api_key . ':' . $this->password ),
+				'Content-Type' => 'application/vnd.api+json',
+				'Accept' => 'application/json, text/javascript, */*; q=0.01',
+			),
         ) );
 		
-		$args['headers']['Authorization'] = 'Basic ' . base64_encode( $this->api_key . ':' . $this->password );
-		$args['Content-Type'] = 'application/vnd.api+json';
-		$args['Accept'] = 'application/json, text/javascript, */*; q=0.01';
+		$headers = array();
+		foreach ( $args['headers'] as $key => $value ) {
+			
+			$headers[] = "$key: $value";
+			
+		}
         
         $url = $this->api_endpoint . '/' . $method;
 		
@@ -182,9 +189,8 @@ class PyIS_Address_Collection_Drip_API {
 			
         }
 		
-		curl_setopt( $ch, CURLOPT_URL, $url);
-        curl_setopt( $ch, CURLOPT_HTTPHEADER, $this->headers );
-		
+		curl_setopt( $ch, CURLOPT_URL, $url );
+        curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
 		$buffer = curl_exec( $ch );
 		return json_decode( $buffer );
         
