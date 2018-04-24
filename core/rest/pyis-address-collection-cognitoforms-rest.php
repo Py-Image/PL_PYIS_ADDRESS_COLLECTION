@@ -77,7 +77,23 @@ class PyIS_Address_Collection_REST {
         
         $subscriber = PYISADDRESSCOLLECTION()->drip_api->get( 'subscribers/' . $email );
 		
+		$found_subscriber = true;
+		
 		if ( property_exists( $subscriber, 'errors' ) ) {
+			
+			$found_subscriber = array_filter( 
+				$subscriber->errors,
+				function( $object ) {
+					// We want to know if there are errors other than the Subscriber not being found so we can report them
+					return $object->code !== 'not_found_error';
+				}
+			);
+			
+		}
+		
+		// $found_subscriber defaults to true, but if one is explictly not found via our error check above, then this error reporting code should run
+		if ( $found_subscriber && 
+			property_exists( $subscriber, 'errors' ) ) {
 			
 			$to = get_option( 'pyis_address_collection_admin_email' );
             $to = ( $to ) ? $to : get_option( 'admin_email' ); // Default to the Primary Admin Email
@@ -140,7 +156,10 @@ class PyIS_Address_Collection_REST {
             
             wp_mail( $to, $subject, $message, $headers );
 			
-			return false;
+			return json_encode( array(
+				'success' => false,
+				'message' => __( 'Error', PyIS_Address_Collection_ID ),
+			) );
 			
 		}
         
@@ -182,7 +201,7 @@ class PyIS_Address_Collection_REST {
         else {
             
             // Only Tag the Subscriber if they exist
-            if ( ! property_exists( $subscriber, 'errors' ) ) {
+            if ( $found_subscriber ) {
             
                 $tag_subscriber = PYISADDRESSCOLLECTION()->drip_api->post(
                     'tags',
