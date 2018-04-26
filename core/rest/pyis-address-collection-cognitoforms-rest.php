@@ -289,12 +289,17 @@ class PyIS_Address_Collection_REST {
             
 			// TODO: Switch to wp_mail()
             mail( $to, $subject, $message, $headers );
+			
+			return json_encode( array(
+				'success' => true,
+				'message' => __( 'Success! Suspicious email sent.', PyIS_Address_Collection_ID ),
+			) );
             
         }
         
         return json_encode( array(
             'success' => true,
-            'message' => __( 'Success!', PyIS_Address_Collection_ID ),
+            'message' => __( 'Success! This User has purchased the hardcopy.', PyIS_Address_Collection_ID ),
         ) );
 
     }

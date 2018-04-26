@@ -182,7 +182,7 @@ class PyIS_Address_Collection_Drip_API {
 			elseif ( $http_verb == 'post' || 
 					$http_verb == 'delete' ) {
 				
-                $params_str = is_array( $args ) ? json_encode( $args ) : $args;
+                $params_str = is_array( $args['body'] ) ? json_encode( $args['body'] ) : $args['body'];
                 curl_setopt( $ch, CURLOPT_POSTFIELDS, $params_str );
 				
             }
