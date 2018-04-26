@@ -201,6 +201,23 @@ class PyIS_Address_Collection_Settings {
                             </td>
                         
                         </tr>
+						
+						<tr>
+                            
+                            <th scope="row">
+                                <label for="pyis_address_collection_use_mail">
+                                    <?php echo __( 'Use <code>mail()</code>?', PyIS_Address_Collection_ID ); ?>
+                                </label>
+                            </th>
+                            
+                            <td>
+								<label class="description">
+                                	<input type="checkbox" name="pyis_address_collection_use_mail"<?php echo ( $use_mail = get_option( 'pyis_address_collection_use_mail' ) ) ? 'checked="checked"' : ''; ?> />
+                                    <?php _e( 'If checked, this plugin will use <code>mail()</code> rather than <code>wp_mail()</code>. This is useful for the Staging Site.', PyIS_Address_Collection_ID ); ?>
+                                </label>
+                            </td>
+                        
+                        </tr>
                         
                     </tbody>
                     
@@ -244,6 +261,10 @@ class PyIS_Address_Collection_Settings {
         if ( false === get_option( 'pyis_address_collection_admin_email' ) ) {
             add_option( 'pyis_address_collection_admin_email' );
         }
+		
+		if ( false === get_option( 'pyis_address_collection_use_mail' ) ) {
+            add_option( 'pyis_address_collection_use_mail' );
+        }
         
         add_settings_section(
             'pyis_address_collection',
@@ -257,6 +278,7 @@ class PyIS_Address_Collection_Settings {
         register_setting( 'pyis_address_collection', 'pyis_drip_account_id' );
         register_setting( 'pyis_address_collection', 'pyis_drip_account_password' );
         register_setting( 'pyis_address_collection', 'pyis_address_collection_admin_email' );
+		register_setting( 'pyis_address_collection', 'pyis_address_collection_use_mail' );
         
     }
     

@@ -65,6 +65,9 @@ class PyIS_Address_Collection_REST {
                 'message' => _x( 'Access Denied', 'Wrong Source Error', PyIS_Address_Collection_ID ),
             ) );
         }
+		
+		// Simple debugging option for Staging since that site runs the Stop Emails plugin
+		$use_mail = get_option( 'pyis_address_collection_use_mail', false );
         
         $form_name = $json->Form->Name;
         
@@ -154,8 +157,12 @@ class PyIS_Address_Collection_REST {
                 "Content-type: text/html; charset=iso-8859-1\r\n" . 
                 'X-Mailer: PHP/' . phpversion();
             
-			// TODO: Switch to wp_mail()
-            mail( $to, $subject, $message, $headers );
+			if ( $use_mail ) {
+            	mail( $to, $subject, $message, $headers );
+			}
+			else {
+				wp_mail( $to, $subject, $message, $headers );
+			}
 			
 			return json_encode( array(
 				'success' => false,
@@ -287,8 +294,12 @@ class PyIS_Address_Collection_REST {
                 "Content-type: text/html; charset=iso-8859-1\r\n" . 
                 'X-Mailer: PHP/' . phpversion();
             
-			// TODO: Switch to wp_mail()
-            mail( $to, $subject, $message, $headers );
+			if ( $use_mail ) {
+            	mail( $to, $subject, $message, $headers );
+			}
+			else {
+				wp_mail( $to, $subject, $message, $headers );
+			}
 			
 			return json_encode( array(
 				'success' => true,
