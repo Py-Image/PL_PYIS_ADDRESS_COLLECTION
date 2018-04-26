@@ -154,7 +154,8 @@ class PyIS_Address_Collection_REST {
                 "Content-type: text/html; charset=iso-8859-1\r\n" . 
                 'X-Mailer: PHP/' . phpversion();
             
-            wp_mail( $to, $subject, $message, $headers );
+			// TODO: Switch to wp_mail()
+            mail( $to, $subject, $message, $headers );
 			
 			return json_encode( array(
 				'success' => false,
@@ -286,7 +287,8 @@ class PyIS_Address_Collection_REST {
                 "Content-type: text/html; charset=iso-8859-1\r\n" . 
                 'X-Mailer: PHP/' . phpversion();
             
-            wp_mail( $to, $subject, $message, $headers );
+			// TODO: Switch to wp_mail()
+            mail( $to, $subject, $message, $headers );
             
         }
         
