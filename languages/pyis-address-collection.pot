@@ -165,7 +165,15 @@ msgstr ""
 msgid "Success! Suspicious email sent."
 msgstr ""
 
-#: core/rest/pyis-address-collection-cognitoforms-rest.php:313
+#: core/rest/pyis-address-collection-cognitoforms-rest.php:314
+msgid "Address Collection Success"
+msgstr ""
+
+#: core/rest/pyis-address-collection-cognitoforms-rest.php:324
+msgid "%s has recieved a valid entry.<br /><br />Entry ID: <a href='%s' target='_blank'>%s</a><br /><br />First Name: %s<br /><br />Last Name: %s<br /><br />Email Address: %s"
+msgstr ""
+
+#: core/rest/pyis-address-collection-cognitoforms-rest.php:382
 msgid "Success! This User has purchased the hardcopy."
 msgstr ""
 
