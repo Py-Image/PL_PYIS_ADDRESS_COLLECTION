@@ -71,25 +71,31 @@ class PyIS_Address_Collection_REST {
         
         $form_name = $json->Form->Name;
 		
-		$all_form_settings = get_option( 'pyis_address_collection_forms', array(
-			array(
-				'title' => __( 'Practical Python and OpenCV Hardcopy Shipping', 'pyis-address-collection' ),
-				'search' => 'purchased hardcopy bundle',
-				'collected' => 'ppao collected address',
-				'suspect' => 'ppao address suspect',
-			),
-		) );
+		$all_form_settings = get_option( 'pyis_address_collection_forms' );
+		
+		if ( ! $all_form_settings ) {
+			
+			$all_form_settings = array(
+				array(
+					'title' => __( 'Practical Python and OpenCV Hardcopy Shipping', 'pyis-address-collection' ),
+					'search' => 'purchased hardcopy bundle',
+					'collected' => 'ppao collected address',
+					'suspect' => 'ppao address suspect',
+				),
+			);
+			
+		}
 		
 		$form_settings = array_filter( 
 			$all_form_settings,
-			function( $settings ) {
+			function( $settings ) use ( $form_name ) {
 				// Return only results for the submitted form
 				return $settings['title'] == $form_name;
 			}
 		);
 		
 		// Back out one level
-		reset( $form_settings );
+		$form_settings = reset( $form_settings );
 		
 		// No settings found, bail
 		if ( empty( $form_settings ) ) {
@@ -203,7 +209,7 @@ class PyIS_Address_Collection_REST {
         
         $purchased_hardcopy_bundle = array_filter( 
             $subscriber->subscribers,
-            function( $object ) {
+            function( $object ) use ( $form_settings ) {
                 return in_array( $form_settings['search'], $object->tags );
             }
         );
