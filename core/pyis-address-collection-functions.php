@@ -265,6 +265,17 @@ function pyis_address_collection_do_field_repeater( $args = array() ) {
 }
 
 /**
+ * Outputs a hook. Useful for arbitrary HTML
+ *
+ * @since {{VERSION}}
+ *
+ * @param mixed $values
+ */
+function pyis_address_collection_do_field_hook( $args = array() ) {
+	do_action( 'pyis_address_collection_' . $args['name'], $args );
+}
+
+/**
  * Outputs a String if a Callback Function does not exist for an Options Page Field
  *
  * @since {{VERSION}}

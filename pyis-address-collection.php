@@ -123,7 +123,7 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
                 if ( version_compare( $wp_version, '4.4' ) == -1 ) {
 
                     $this->admin_notices[] = sprintf(
-                        _x( '%s requires your WordPress installation to be at least v%s or higher!', 'Super Old WordPress Installation Error', PyIS_Address_Collection_ID ),
+                        _x( '%s requires your WordPress installation to be at least v%s or higher!', 'Super Old WordPress Installation Error', 'pyis-address-collection' ),
                         '<strong>' . $this->plugin_data['Name'] . '</strong>',
                         '4.4'
                     );
@@ -148,8 +148,8 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
                 if ( ! $api_key || ! $account_id || ! $account_password ) {
 
                     $this->admin_notices[] = sprintf( 
-                        _x( 'In order for data to be sent to Drip, you must enter some credentials in the %s%s Settings Page%s!', 'Drip API Credentials Needed', PyIS_Address_Collection_ID ), 
-                        '<a href="' . get_admin_url( null, 'options-general.php?page=pyis-address-collection' ) . '" title="' . sprintf( _x( '%s Settings', 'Settings Page Link from Error Message', PyIS_Address_Collection_ID ), $this->plugin_data['Name'] ) . '">',
+                        _x( 'In order for data to be sent to Drip, you must enter some credentials in the %s%s Settings Page%s!', 'Drip API Credentials Needed', 'pyis-address-collection' ), 
+                        '<a href="' . get_admin_url( null, 'options-general.php?page=pyis-address-collection' ) . '" title="' . sprintf( _x( '%s Settings', 'Settings Page Link from Error Message', 'pyis-address-collection' ), $this->plugin_data['Name'] ) . '">',
                         '<strong>' . $this->plugin_data['Name'] . '</strong>', '</a>'
                     );
 
@@ -186,11 +186,6 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
             
             // Only call this once, accessible always
             $this->plugin_data = get_plugin_data( __FILE__ );
-            
-            if ( ! defined( 'PyIS_Address_Collection_ID' ) ) {
-                // Plugin Text Domain
-                define( 'PyIS_Address_Collection_ID', $this->plugin_data['TextDomain'] );
-            }
 
             if ( ! defined( 'PyIS_Address_Collection_VER' ) ) {
                 // Plugin version
@@ -233,25 +228,25 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
             $lang_dir = apply_filters( 'pyis_address_collection_languages_directory', $lang_dir );
 
             // Traditional WordPress plugin locale filter
-            $locale = apply_filters( 'plugin_locale', get_locale(), PyIS_Address_Collection_ID );
-            $mofile = sprintf( '%1$s-%2$s.mo', PyIS_Address_Collection_ID, $locale );
+            $locale = apply_filters( 'plugin_locale', get_locale(), 'pyis-address-collection' );
+            $mofile = sprintf( '%1$s-%2$s.mo', 'pyis-address-collection', $locale );
 
             // Setup paths to current locale file
             $mofile_local   = $lang_dir . $mofile;
-            $mofile_global  = WP_LANG_DIR . '/' . PyIS_Address_Collection_ID . '/' . $mofile;
+            $mofile_global  = WP_LANG_DIR . '/pyis-address-collection/' . $mofile;
 
             if ( file_exists( $mofile_global ) ) {
                 // Look in global /wp-content/languages/pyis-address-collection/ folder
                 // This way translations can be overridden via the Theme/Child Theme
-                load_textdomain( PyIS_Address_Collection_ID, $mofile_global );
+                load_textdomain( 'pyis-address-collection', $mofile_global );
             }
             else if ( file_exists( $mofile_local ) ) {
                 // Look in local /wp-content/plugins/pyis-address-collection/languages/ folder
-                load_textdomain( PyIS_Address_Collection_ID, $mofile_local );
+                load_textdomain( 'pyis-address-collection', $mofile_local );
             }
             else {
                 // Load the default language files
-                load_plugin_textdomain( PyIS_Address_Collection_ID, false, $lang_dir );
+                load_plugin_textdomain( 'pyis-address-collection', false, $lang_dir );
             }
 
         }
@@ -299,14 +294,14 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
         public function register_scripts() {
             
             wp_register_style(
-                PyIS_Address_Collection_ID . '-admin',
+                'pyis-address-collection-admin',
                 PyIS_Address_Collection_URL . '/assets/css/admin.css',
                 null,
                 defined( 'WP_DEBUG' ) && WP_DEBUG ? time() : PyIS_Address_Collection_VER
             );
             
             wp_register_script(
-                PyIS_Address_Collection_ID . '-admin',
+                'pyis-address-collection-admin',
                 PyIS_Address_Collection_URL . '/assets/js/admin.js',
                 array( 'jquery' ),
                 defined( 'WP_DEBUG' ) && WP_DEBUG ? time() : PyIS_Address_Collection_VER,

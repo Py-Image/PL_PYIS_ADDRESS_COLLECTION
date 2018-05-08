@@ -53,7 +53,7 @@ class PyIS_Address_Collection_REST {
         if ( empty( $json ) ) {
             return json_encode( array(
                 'success' => false,
-                'message' => _x( 'No data payload', 'No JSON Uploaded Error', PyIS_Address_Collection_ID ),
+                'message' => _x( 'No data payload', 'No JSON Uploaded Error', 'pyis-address-collection' ),
             ) );
         }
         
@@ -62,7 +62,7 @@ class PyIS_Address_Collection_REST {
         if ( (string) $json->Secret !== get_option( 'pyis_cognitoforms_secret_key' ) ) {
             return json_encode( array(
                 'success' => false,
-                'message' => _x( 'Access Denied', 'Wrong Source Error', PyIS_Address_Collection_ID ),
+                'message' => _x( 'Access Denied', 'Wrong Source Error', 'pyis-address-collection' ),
             ) );
         }
 		
@@ -101,7 +101,7 @@ class PyIS_Address_Collection_REST {
 			$to = get_option( 'pyis_address_collection_admin_email' );
             $to = ( $to ) ? $to : get_option( 'admin_email' ); // Default to the Primary Admin Email
             
-            $subject = _x( 'Address Collection Error', 'Error Email Subject Line', PyIS_Address_Collection_ID );
+            $subject = _x( 'Address Collection Error', 'Error Email Subject Line', 'pyis-address-collection' );
             
             /**
              * Allow the Subject Line of the Notificaiton Emails to be changed
@@ -166,7 +166,7 @@ class PyIS_Address_Collection_REST {
 			
 			return json_encode( array(
 				'success' => false,
-				'message' => __( 'Error', PyIS_Address_Collection_ID ),
+				'message' => __( 'Error', 'pyis-address-collection' ),
 			) );
 			
 		}
@@ -235,7 +235,7 @@ class PyIS_Address_Collection_REST {
             $to = get_option( 'pyis_address_collection_admin_email' );
             $to = ( $to ) ? $to : get_option( 'admin_email' ); // Default to the Primary Admin Email
             
-            $subject = _x( 'Address Collection Notice', 'User Suspect Email Subject Line', PyIS_Address_Collection_ID );
+            $subject = _x( 'Address Collection Notice', 'User Suspect Email Subject Line', 'pyis-address-collection' );
             
             /**
              * Allow the Subject Line of the Notificaiton Emails to be changed
@@ -245,7 +245,7 @@ class PyIS_Address_Collection_REST {
             $subject = apply_filters( 'pyis_address_collection_subject_line', $subject );
             
             $message = sprintf( 
-                _x( "%s has recieved a suspicious entry.<br /><br />Entry ID: <a href='%s' target='_blank'>%s</a><br /><br />First Name: %s<br /><br />Last Name: %s<br /><br />Email Address: %s", 'User Suspect Email Message Body', PyIS_Address_Collection_ID ),
+                _x( "%s has recieved a suspicious entry.<br /><br />Entry ID: <a href='%s' target='_blank'>%s</a><br /><br />First Name: %s<br /><br />Last Name: %s<br /><br />Email Address: %s", 'User Suspect Email Message Body', 'pyis-address-collection' ),
                 $form_name,
                 $entry_link,
                 $entry_id,
@@ -303,7 +303,7 @@ class PyIS_Address_Collection_REST {
 			
 			return json_encode( array(
 				'success' => true,
-				'message' => __( 'Success! Suspicious email sent.', PyIS_Address_Collection_ID ),
+				'message' => __( 'Success! Suspicious email sent.', 'pyis-address-collection' ),
 			) );
             
         }
@@ -311,7 +311,7 @@ class PyIS_Address_Collection_REST {
 		$to = get_option( 'pyis_address_collection_admin_email' );
 		$to = ( $to ) ? $to : get_option( 'admin_email' ); // Default to the Primary Admin Email
 
-		$subject = __( 'Address Collection Success', PyIS_Address_Collection_ID );
+		$subject = __( 'Address Collection Success', 'pyis-address-collection' );
 
 		/**
 		 * Allow the Subject Line of the Notificaiton Emails to be changed
@@ -321,7 +321,7 @@ class PyIS_Address_Collection_REST {
 		$subject = apply_filters( 'pyis_address_collection_success_subject_line', $subject );
 
 		$message = sprintf( 
-			__( "%s has recieved a valid entry.<br /><br />Entry ID: <a href='%s' target='_blank'>%s</a><br /><br />First Name: %s<br /><br />Last Name: %s<br /><br />Email Address: %s", PyIS_Address_Collection_ID ),
+			__( "%s has recieved a valid entry.<br /><br />Entry ID: <a href='%s' target='_blank'>%s</a><br /><br />First Name: %s<br /><br />Last Name: %s<br /><br />Email Address: %s", 'pyis-address-collection' ),
 			$form_name,
 			$entry_link,
 			$entry_id,
@@ -379,7 +379,7 @@ class PyIS_Address_Collection_REST {
         
         return json_encode( array(
             'success' => true,
-            'message' => __( 'Success! This User has purchased the hardcopy.', PyIS_Address_Collection_ID ),
+            'message' => __( 'Success! This User has purchased the hardcopy.', 'pyis-address-collection' ),
         ) );
 
     }
