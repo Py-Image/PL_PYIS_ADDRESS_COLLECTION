@@ -84,7 +84,7 @@ class PyIS_Address_Collection_REST {
 			$all_form_settings,
 			function( $settings ) {
 				// Return only results for the submitted form
-				return $settings['title'] !== $form_name;
+				return $settings['title'] == $form_name;
 			}
 		);
 		
