@@ -45,6 +45,12 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
          * @since       0.1.0
          */
         public $drip_api;
+		
+		/**
+         * @var         PyIS_Address_Collection $field_helpers RBM Field Helpers
+         * @since       {{VERSION}}
+         */
+		public $field_helpers;
 
         /**
          * Get active instance
@@ -72,6 +78,45 @@ if ( ! class_exists( 'PyIS_Address_Collection' ) ) {
             
             global $wp_version;
             global $wp_settings_errors;
+			
+			require_once __DIR__ . '/core/library/rbm-field-helpers/rbm-field-helpers.php';
+		
+			$this->field_helpers = new RBM_FieldHelpers( array(
+				'ID'   => 'pyis_address_collection', // Your Theme/Plugin uses this to differentiate its instance of RBM FH from others when saving/grabbing data
+				'l10n' => array(
+					'field_table'    => array(
+						'delete_row'    => __( 'Delete Row', 'pyis-address-collection' ),
+						'delete_column' => __( 'Delete Column', 'pyis-address-collection' ),
+					),
+					'field_select'   => array(
+						'no_options'       => __( 'No select options.', 'pyis-address-collection' ),
+						'error_loading'    => __( 'The results could not be loaded', 'pyis-address-collection' ),
+						/* translators: %d is number of characters over input limit */
+						'input_too_long'   => __( 'Please delete %d character(s)', 'pyis-address-collection' ),
+						/* translators: %d is number of characters under input limit */
+						'input_too_short'  => __( 'Please enter %d or more characters', 'pyis-address-collection' ),
+						'loading_more'     => __( 'Loading more results...', 'pyis-address-collection' ),
+						/* translators: %d is maximum number items selectable */
+						'maximum_selected' => __( 'You can only select %d item(s)', 'pyis-address-collection' ),
+						'no_results'       => __( 'No results found', 'pyis-address-collection' ),
+						'searching'        => __( 'Searching...', 'pyis-address-collection' ),
+					),
+					'field_repeater' => array(
+						'collapsable_title' => __( 'New Row', 'pyis-address-collection' ),
+						'confirm_delete'    => __( 'Are you sure you want to delete this element?', 'pyis-address-collection' ),
+						'delete_item'       => __( 'Delete', 'pyis-address-collection' ),
+						'add_item'          => __( 'Add', 'pyis-address-collection' ),
+					),
+					'field_media'    => array(
+						'button_text'        => __( 'Upload / Choose Media', 'pyis-address-collection' ),
+						'button_remove_text' => __( 'Remove Media', 'pyis-address-collection' ),
+						'window_title'       => __( 'Choose Media', 'pyis-address-collection' ),
+					),
+					'field_checkbox' => array(
+						'no_options_text' => __( 'No options available.', 'pyis-address-collection' ),
+					),
+				),
+			) );
             
             if ( is_admin() ) {
             
