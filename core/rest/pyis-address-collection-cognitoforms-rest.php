@@ -70,6 +70,35 @@ class PyIS_Address_Collection_REST {
 		$use_mail = get_option( 'pyis_address_collection_use_mail', false );
         
         $form_name = $json->Form->Name;
+		
+		$all_form_settings = get_option( 'pyis_address_collection_forms', array(
+			array(
+				'title' => __( 'Practical Python and OpenCV Hardcopy Shipping', 'pyis-address-collection' ),
+				'search' => 'purchased hardcopy bundle',
+				'collected' => 'ppao collected address',
+				'suspect' => 'ppao address suspect',
+			),
+		) );
+		
+		$form_settings = array_filter( 
+			$all_form_settings,
+			function( $settings ) {
+				// Return only results for the submitted form
+				return $settings['title'] !== $form_name;
+			}
+		);
+		
+		$form_settings = reset( $form_settings );
+		
+		// No settings found, bail
+		if ( empty( $form_settings ) ) {
+			
+			return json_encode( array(
+                'success' => false,
+                'message' => __( 'Form Error', 'pyis-address-collection' ),
+            ) );
+			
+		}
         
         $entry_id = $json->Entry->Number;
         $entry_link = $json->Entry->AdminLink;
@@ -174,12 +203,7 @@ class PyIS_Address_Collection_REST {
         $purchased_hardcopy_bundle = array_filter( 
             $subscriber->subscribers,
             function( $object ) {
-                /**
-                 * Allows the Tag we check against for Hardcopy Bundle Purchase to be changed
-                 *
-                 * @since 0.1.0
-                 */
-                return in_array( apply_filters( 'pyis_address_collection_tag_check', 'purchased hardcopy bundle' ), $object->tags );
+                return in_array( $form_settings['search'], $object->tags );
             }
         );
         
@@ -193,12 +217,7 @@ class PyIS_Address_Collection_REST {
                         'tags' => array(
                             array(
                                 'email' => $email,
-                                /**
-                                 * Allow the "Address Collected" Tag to be changed
-                                 *
-                                 * @since 0.1.0
-                                 */
-                                'tag' => apply_filters( 'pyis_address_collection_collected_tag', 'ppao collected address' ),
+                                'tag' => $form_settings['collected'],
                             ),
                         ),
                     ) ),
@@ -218,12 +237,7 @@ class PyIS_Address_Collection_REST {
                             'tags' => array(
                                 array(
                                     'email' => $email,
-                                    /**
-                                     * Allow the "Address Suspect" Tag to be changed
-                                     *
-                                     * @since 0.1.0
-                                     */
-                                    'tag' => apply_filters( 'pyis_address_collection_suspect_tag', 'ppao address suspect' ),
+                                    'tag' => $form_settings['suspect'],
                                 ),
                             ),
                         ) ),
