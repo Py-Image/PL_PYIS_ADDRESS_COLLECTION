@@ -117,6 +117,13 @@ class PyIS_Address_Collection_Settings {
         
     }
 	
+	/**
+	 * Outputs the Instructions for configuring the forms
+	 * 
+	 * @access		public
+	 * @since		{{VERSION}}
+	 * @param		array $args Unused
+	 */
 	public function cognitoforms_instructions( $args ) {
 		
 		?>
@@ -228,6 +235,59 @@ class PyIS_Address_Collection_Settings {
 				'input_atts' => array(
 					'required' => true,
 					'type' => 'password',
+				),
+			),
+			'pyis_address_collection_forms' => array(
+				'type' => 'repeater',
+				'settings_label' => __( 'Per-Form Settings', 'pyis-address-collection' ),
+				'no_init' => true,
+				'option_field' => true,
+				'sortable' => false,
+				'fields' => array(
+					'title' => array(
+						'type' => 'text',
+						'args' => array(
+							'label' => __( 'Form Title', 'pyis-address-collection' ),
+							'input_atts' => array(
+								'required' => true,
+							),
+						),
+					),
+					'search' => array(
+						'type' => 'text',
+						'args' => array(
+							'label' => __( 'Drip Tag to Check for', 'pyis-address-collection' ),
+							'input_atts' => array(
+								'required' => true,
+							),
+						),
+					),
+					'collected' => array(
+						'type' => 'text',
+						'args' => array(
+							'label' => __( 'Tag to Use for Successful Address Collection', 'pyis-address-collection' ),
+							'input_atts' => array(
+								'required' => true,
+							),
+						),
+					),
+					'suspect' => array(
+						'type' => 'text',
+						'args' => array(
+							'label' => __( 'Tag to Use for Suspect Address Collection', 'pyis-address-collection' ),
+							'input_atts' => array(
+								'required' => true,
+							),
+						),
+					),
+				),
+				'default' => array(
+					array(
+						'title' => __( 'Practical Python and OpenCV Hardcopy Shipping', 'pyis-address-collection' ),
+						'search' => 'purchased hardcopy bundle',
+						'collected' => 'ppao collected address',
+						'suspect' => 'ppao address suspect',
+					),
 				),
 			),
 			'pyis_address_collection_admin_email' => array(
