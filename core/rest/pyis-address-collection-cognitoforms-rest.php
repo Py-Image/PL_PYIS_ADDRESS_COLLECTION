@@ -88,7 +88,8 @@ class PyIS_Address_Collection_REST {
 			}
 		);
 		
-		$form_settings = reset( $form_settings );
+		// Back out one level
+		reset( $form_settings );
 		
 		// No settings found, bail
 		if ( empty( $form_settings ) ) {
