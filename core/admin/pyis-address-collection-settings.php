@@ -224,7 +224,7 @@ class PyIS_Address_Collection_Settings {
 				),
 			),
 			'pyis_drip_account_password' => array(
-				'type' => 'text',
+				'type' => 'password',
 				'settings_label' => __( 'Drip Account Password', 'pyis-address-collection' ),
 				'no_init' => true,
 				'option_field' => true,
@@ -234,7 +234,6 @@ class PyIS_Address_Collection_Settings {
 				'description_tip' => false,
 				'input_atts' => array(
 					'required' => true,
-					'type' => 'password',
 				),
 			),
 			'pyis_address_collection_forms' => array(
