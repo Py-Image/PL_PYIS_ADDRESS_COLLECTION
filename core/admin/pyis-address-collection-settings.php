@@ -121,7 +121,7 @@ class PyIS_Address_Collection_Settings {
 	 * Outputs the Instructions for configuring the forms
 	 * 
 	 * @access		public
-	 * @since		{{VERSION}}
+	 * @since		1.1.0
 	 * @param		array $args Unused
 	 */
 	public function cognitoforms_instructions( $args ) {
@@ -151,7 +151,7 @@ class PyIS_Address_Collection_Settings {
 	 * Holds the Settings Array
 	 * 
 	 * @access		public
-	 * @since		{{VERSION}}
+	 * @since		1.1.0
 	 * @return		array Settings Array
 	 */
 	public function get_settings() {

@@ -142,7 +142,7 @@ class PyIS_Address_Collection_REST {
             /**
              * Allow the Subject Line of the Notificaiton Emails to be changed
              *
-             * @since {{VERSION}}
+             * @since 1.1.0
              */
             $subject = apply_filters( 'pyis_address_collection_error_subject_line', $subject );
             
@@ -156,7 +156,7 @@ class PyIS_Address_Collection_REST {
             /**
              * Allow the Email Error Message Body to be changed
              *
-             * @since {{VERSION}}
+             * @since 1.1.0
              */
             $message = apply_filters( 
                 'pyis_address_collection_error_message_body', 
@@ -175,7 +175,7 @@ class PyIS_Address_Collection_REST {
             /**
              * Allow the "From: " Address Header to be changed
              *
-             * @since {{VERSION}}
+             * @since 1.1.0
              */
             $from_address = apply_filters( 'pyis_address_collection_from_address', $from_address, $sitename );
             
@@ -184,7 +184,7 @@ class PyIS_Address_Collection_REST {
             /**
              * Allow the "Reply-To: " Address Header to be changed
              *
-             * @since {{VERSION}}
+             * @since 1.1.0
              */
             $reply_to_address = apply_filters( 'pyis_address_collection_error_reply_to_address', $reply_to_address, $sitename );
             
